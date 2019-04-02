@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialForumData;
 
 namespace SocialForumData.Migrations
 {
     [DbContext(typeof(SocialForumContext))]
-    partial class SocialForumContextModelSnapshot : ModelSnapshot
+    [Migration("20190402184851_User Updated for JWT Authentication")]
+    partial class UserUpdatedforJWTAuthentication
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

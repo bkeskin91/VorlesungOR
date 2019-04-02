@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SocialForumData;
 using SocialForumData.Models;
@@ -29,6 +30,7 @@ namespace SocialForumAPI.Controllers
                 .ToList();
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Thread> GetThreadByID(int id)
         {

@@ -27,6 +27,10 @@ namespace SocialForumData.Models
         public string Firstname { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+        
+        public virtual string Password { get; set; }
+
+        public string Token { get; set; }
 
 
     }
