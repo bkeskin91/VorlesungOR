@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -71,6 +72,8 @@ namespace SocialForumAPI
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            services.AddOData();
+
             /*
              * Eine Dokumentationsoberfläche für Web API's Swagger siehe die Konfiguration in der Configure Methode
              */
@@ -101,7 +104,11 @@ namespace SocialForumAPI
             app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseMvc(routeBuilder =>
+            {
+                routeBuilder.EnableDependencyInjection();
+                routeBuilder.Expand().Select().Count().Filter().OrderBy();
+            });
         }
     }
 }

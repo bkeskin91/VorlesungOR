@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNet.OData;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SocialForumData;
@@ -21,6 +22,7 @@ namespace SocialForumAPI.Controllers
             _context = context;
         }
         [HttpGet]
+        [EnableQuery()]
         public ActionResult<IEnumerable<Thread>> GetAllThreads()
         {
             return _context.Threads
@@ -32,6 +34,7 @@ namespace SocialForumAPI.Controllers
 
         [Authorize]
         [HttpGet("{id}")]
+        [EnableQuery()]
         public ActionResult<Thread> GetThreadByID(int id)
         {
             return _context.Threads
